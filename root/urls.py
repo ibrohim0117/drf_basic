@@ -17,7 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from apps.views import UserListApiView, UserCreateApiView, UserDetailApiView, UserUpdateApiView
+from apps.views import(UserListApiView, UserCreateApiView,
+                       UserDetailApiView, UserUpdateApiView,
+                       UserRetrieveAPIView
+                       )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +28,6 @@ urlpatterns = [
     path('user-create', UserCreateApiView.as_view(), name='user_create'),
     path('user-detail/<int:pk>', UserDetailApiView.as_view(), name='user_detail'),
     path('user-update/<int:pk>', UserUpdateApiView.as_view(), name='user_update'),
+    path('user-delete/<int:pk>', UserRetrieveAPIView.as_view(), name='user_delete'),
 
 ]

@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
+from django.views.generic import DeleteView
 from rest_framework import generics
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 
 from apps.serializer import UserModelSerializer, UserDetailModelSerializer, UserCreateModelSerializer
 
@@ -25,6 +26,11 @@ class UserDetailApiView(RetrieveAPIView):
 
 
 class UserUpdateApiView(UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserModelSerializer
+
+
+class UserRetrieveAPIView(DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
 
