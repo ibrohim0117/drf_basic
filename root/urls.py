@@ -17,11 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from apps.views import UserListApiView, UserCreateApiView, UserDetailApiView
+from apps.views import UserListApiView, UserCreateApiView, UserDetailApiView, UserUpdateApiView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user-list', UserListApiView.as_view(), name='user_list'),
     path('user-create', UserCreateApiView.as_view(), name='user_create'),
-    path('user-detail/<int:pk>', UserDetailApiView.as_view(), name='user_detail')
+    path('user-detail/<int:pk>', UserDetailApiView.as_view(), name='user_detail'),
+    path('user-update/<int:pk>', UserUpdateApiView.as_view(), name='user_update'),
+
 ]
