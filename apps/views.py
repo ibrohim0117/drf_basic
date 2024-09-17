@@ -3,12 +3,10 @@ from django.shortcuts import render
 from django.views.generic import DeleteView
 from rest_framework import generics
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView, \
-    ListCreateAPIView
+    ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
+from apps.filters import ProductFilter
 from apps.serializer import UserModelSerializer, UserDetailModelSerializer, UserCreateModelSerializer
-
-
-# Create your views here.
 
 
 class UserListApiView(ListAPIView):
@@ -24,6 +22,8 @@ class UserCreateApiView(CreateAPIView):
 class UserCreateListApiView(ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
+    filterset_fields = ('first_name', 'last_name')
+    filterset_class = ProductFilter
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -44,6 +44,11 @@ class UserUpdateApiView(UpdateAPIView):
 
 
 class UserRetrieveAPIView(DestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserModelSerializer
+
+
+class UserRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
 
