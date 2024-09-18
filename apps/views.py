@@ -6,7 +6,9 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView,
     ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
 from apps.filters import ProductFilter
-from apps.serializer import UserModelSerializer, UserDetailModelSerializer, UserCreateModelSerializer
+from apps.models import Category, Product
+from apps.serializer import UserModelSerializer, UserDetailModelSerializer, UserCreateModelSerializer, \
+    CategoryModelSeCategory, ProductModelSerializer
 
 
 class UserListApiView(ListAPIView):
@@ -51,6 +53,16 @@ class UserRetrieveAPIView(DestroyAPIView):
 class UserRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
+
+
+class CategoryListApiView(ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategoryModelSeCategory
+
+
+class ProductListApiView(ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductModelSerializer
 
 
 

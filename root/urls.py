@@ -19,7 +19,7 @@ from django.urls import path
 
 from apps.views import (UserListApiView, UserCreateApiView,
                         UserDetailApiView, UserUpdateApiView,
-                        UserRetrieveAPIView, UserCreateListApiView
+                        UserRetrieveAPIView, UserCreateListApiView, ProductListApiView, CategoryListApiView
                         )
 
 urlpatterns = [
@@ -37,5 +37,8 @@ urlpatterns = [
     path('user-detail/<int:pk>', UserDetailApiView.as_view(), name='user_detail'),
     path('user-update/<int:pk>', UserUpdateApiView.as_view(), name='user_update'),
     path('user-delete/<int:pk>', UserRetrieveAPIView.as_view(), name='user_delete'),
+
+    path('product-list', ProductListApiView.as_view(), name='product_list'),
+    path('category-list', CategoryListApiView.as_view(), name='category_list'),
 
 ]
