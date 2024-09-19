@@ -21,7 +21,7 @@ class BaseSlugModel(Model):
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         self.slug = slugify(self.name)
         if self.__class__.objects.filter(slug=self.slug).exists():
-            self.slug += 1
+            self.slug += f'_{1}'
         super().save(force_insert, force_update, using, update_fields)
 
     class Meta:
@@ -29,7 +29,8 @@ class BaseSlugModel(Model):
 
 
 class Category(BaseSlugModel, BaseCreatedModel):
-    pass
+    def __str__(self):
+        return self.name
 
 
 class Product(BaseSlugModel, BaseCreatedModel):
@@ -38,6 +39,9 @@ class Product(BaseSlugModel, BaseCreatedModel):
     image = models.ImageField(upload_to='products/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='products')
+
+    def __str__(self):
+        return self.name
 
 
 

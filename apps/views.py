@@ -1,11 +1,13 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views.generic import DeleteView
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
+from rest_framework.filters import SearchFilter
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView, \
     ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
-from apps.filters import ProductFilter
+from apps.filters import ProductFilter, ProductFilterSet
 from apps.models import Category, Product
 from apps.serializer import UserModelSerializer, UserDetailModelSerializer, UserCreateModelSerializer, \
     CategoryModelSeCategory, ProductModelSerializer
@@ -63,6 +65,10 @@ class CategoryListApiView(ListAPIView):
 class ProductListApiView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductModelSerializer
+    filterset_fields = ('category', 'owner')
+    filter_backends = DjangoFilterBackend, SearchFilter
+    filterset_class = ProductFilterSet
+    search_fields = ('name', 'description')
 
 
 

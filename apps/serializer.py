@@ -34,6 +34,7 @@ class CategoryModelSeCategory(ModelSerializer):
 
 
 class ProductModelSerializer(ModelSerializer):
+
     class Meta:
         model = Product
-        fields = ('id', 'name', 'price', 'slug', 'image', 'category', 'owner')
+        fields = ('id', 'name', 'price', 'slug', 'image', 'category', 'description', 'owner')
