@@ -18,17 +18,17 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     #1
-    # path('user-list', UserListApiView.as_view(), name='user_list'),
-    # path('user-create', UserCreateApiView.as_view(), name='user_create'),
+    path('users/', UserListApiView.as_view(), name='user_list'),
+    path('user-create/', UserCreateApiView.as_view(), name='user_create'),
 
     #2
-    path('users', UserCreateListApiView.as_view(), name='user-list'),
+    # path('users', UserCreateListApiView.as_view(), name='user-list'),
 
 
 
-    # path('user-detail/<int:pk>', UserDetailApiView.as_view(), name='user_detail'),
-    # path('user-update/<int:pk>', UserUpdateApiView.as_view(), name='user_update'),
-    # path('user-delete/<int:pk>', UserRetrieveAPIView.as_view(), name='user_delete'),
+    path('user-detail/<int:pk>/', UserDetailApiView.as_view(), name='user_detail'),
+    path('user-update/<int:pk>/', UserUpdateApiView.as_view(), name='user_update'),
+    path('user-delete/<int:pk>/', UserRetrieveAPIView.as_view(), name='user_delete'),
 
     path('product-list', ProductListApiView.as_view(), name='product_list'),
     path('category-list', CategoryListApiView.as_view(), name='category_list'),
