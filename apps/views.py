@@ -6,6 +6,7 @@ from rest_framework import generics, status
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView, \
     ListCreateAPIView, RetrieveUpdateDestroyAPIView, get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -124,10 +125,11 @@ class CategoryListApiView(ListAPIView):
 class ProductListApiView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductModelSerializer
-    filterset_fields = ('category', 'owner')
-    filter_backends = DjangoFilterBackend, SearchFilter
-    filterset_class = ProductFilterSet
-    search_fields = ('name', 'description')
+    # filterset_fields = ('category', 'owner')
+    # filter_backends = DjangoFilterBackend, SearchFilter
+    # filterset_class = ProductFilterSet
+    # search_fields = ('name', 'description')
+    permission_classes = [IsAuthenticated, ]
 
 
 
