@@ -1,7 +1,7 @@
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, Serializer
 
 from apps.models import Category, Product
 
@@ -27,10 +27,15 @@ class UserDetailModelSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class CategoryModelSeCategory(ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ('id', 'name', 'slug')
+# class CategoryModelSeCategory(ModelSerializer):
+#     class Meta:
+#         model = Category
+#         fields = ('id', 'name', 'slug')
+
+
+class CategoryModelSeCategory(serializers.Serializer):
+    name = serializers.CharField(max_length=255)
+    slug = serializers.SlugField(max_length=255)
 
 
 class ProductModelSerializer(ModelSerializer):
