@@ -34,6 +34,7 @@ class UserDetailModelSerializer(ModelSerializer):
 
 
 class CategoryModelSeCategory(serializers.Serializer):
+    id = serializers.IntegerField()
     name = serializers.CharField(max_length=255)
     slug = serializers.SlugField(max_length=255)
 
